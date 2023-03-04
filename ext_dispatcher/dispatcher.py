@@ -20,3 +20,7 @@ class Dispatcher:
         self.library_name = library_name
         self._generator = Generator(library=library_name)
         self._generator._generate_types()
+
+    def dispatch(self, event: str, *args, **kwargs) -> None:
+        self.bot.dispatch(event, *args, **kwargs)
+        _log.info("%s event was dispatched", event)
