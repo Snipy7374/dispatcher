@@ -1,0 +1,5 @@
+[project]
+name = "ext_dispatcher"
+
+[tool.pyright]
+typeCheckingMode = "strict"

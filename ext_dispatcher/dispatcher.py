@@ -1,28 +1,22 @@
+from __future__ import annotations
+from typing import Any, TYPE_CHECKING
+from typing_extensions import TypeAlias
+
+import os
+import logging
+
+if TYPE_CHECKING:
+    from .types import AnyBot
+
+
+from .generator import Generator
+
+_log = logging.getLogger(__name__)
 
 
 class Dispatcher:
-    """A class that handles dispatch logic for you.
-
-    .. versionadded:: 0.0.1
-
-    Parameters
-    ----------
-    bot: ?
-    """
-    def __init__(self, bot):
+    def __init__(self, bot: AnyBot, library_name: str = "disnake") -> None:
         self.bot = bot
-        pass
-
-    def dispatch(self, event_name: str, *args, **kwargs) -> None:
-        """A method to dispatch custom events.
-
-        .. versionaddeed:: 0.0.1
-
-        Parameters
-        ----------
-
-        event_name: :class:`str`
-        *args: Any
-        **kwargs: Any
-        """
-        pass
+        self.library_name = library_name
+        self._generator = Generator(library=library_name)
+        self._generator._generate_types()
