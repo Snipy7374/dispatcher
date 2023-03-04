@@ -2,7 +2,7 @@
 
 An extension to easily dispatch custom events for discord bots.
 
-This extension can ideally work with any discord.py fork (disnake, nextcord, pycord).
+This extension can ideally work with any discord.py fork (disnake, nextcord, pycord) and it comes with typing support for every of these forks.
 
 # Example
 
