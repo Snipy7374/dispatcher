@@ -6,3 +6,4 @@ __version__ = "0.0.1"
 
 
 from ._dispatcher import *
+from .enums import *
