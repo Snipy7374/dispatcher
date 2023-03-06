@@ -34,7 +34,7 @@ Out: UwU 10
 - With pip + git
 
     ```
-    python3 -m pip install -U git+https://github.com/Snipy7374/dispatcher/tree/beta
+    python3 -m pip install -U git+https://github.com/Snipy7374/dispatcher
     ```
 
 - With git
