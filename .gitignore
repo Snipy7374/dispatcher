@@ -127,3 +127,10 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# generated test types
+types
+test.py
+
+# IDE config
+.vscode
