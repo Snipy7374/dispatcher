@@ -1,6 +1,6 @@
 [project]
 name = "dispatcher"
-description = ""
+description = "An extension to easily dispatch custom events for discord bots."
 readme = "README.md"
 authors = [
     {name = "Snipy7374", email = "snipy7374@gmail.com"}
