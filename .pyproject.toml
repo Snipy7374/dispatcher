@@ -1,5 +1,29 @@
 [project]
-name = "ext_dispatcher"
+name = "dispatcher"
+description = ""
+readme = "README.md"
+authors = [
+    {name = "Snipy7374", email = "snipy7374@gmail.com"}
+]
+requires-python = ">=3.8"
+keywords = ["discord", "discord API", "discord.py"]
+license = {text = "MIT"}
+dynamic = ["version", "dependecies"]
+
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.dynamic]
+version = {attr = "dispatcher.__version__"}
+dependecies = {file = ["requirements.txt"]}
 
 [tool.pyright]
 typeCheckingMode = "strict"
+reportInvalidStringEscapeSequence = false
+reportUnusedImport = false
+reportUnknownParameterType = false
+reportUnknownArgumentType = false
+reportUnknownMemberType = false
+reportMissingParameterType = false
+reportUnnecessaryIsInstance = false

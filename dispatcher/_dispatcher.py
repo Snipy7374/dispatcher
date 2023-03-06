@@ -1,3 +1,27 @@
+"""
+MIT License
+
+Copyright (c) 2023 Snipy7374
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+"""
+
 from __future__ import annotations
 from typing import (
     List,
@@ -13,7 +37,7 @@ import logging
 import types
 
 if TYPE_CHECKING:
-    from .types import AnyBot
+    from .types import AnyBot  # type: ignore
 
 from .generator import Generator
 
@@ -58,13 +82,13 @@ class Dispatcher:
         self._generator._generate_types()
     
     @property
-    def listeners(self) -> Mapping  [str, List[CoroFunc]]:
+    def listeners(self) -> Mapping[str, List[CoroFunc]]:
         """Mapping[:class:`str`, List[Callable]]: A read-only mapping of event name to listeners.
         
         .. versionadded:: 0.0.1
         """
         # hacky way
-        from .types import Bot, AutoShardedBot
+        from .types import Bot, AutoShardedBot  # type: ignore
 
         # btw disnake is better
         # importing thins that does not exist on other forks but that exist on disnake 
