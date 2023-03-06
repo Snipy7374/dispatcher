@@ -37,7 +37,7 @@ import logging
 import types
 
 if TYPE_CHECKING:
-    from .types import AnyBot
+    from .types import AnyBot  # type: ignore
 
 from .generator import Generator
 
@@ -82,13 +82,13 @@ class Dispatcher:
         self._generator._generate_types()
     
     @property
-    def listeners(self) -> Mapping  [str, List[CoroFunc]]:
+    def listeners(self) -> Mapping[str, List[CoroFunc]]:
         """Mapping[:class:`str`, List[Callable]]: A read-only mapping of event name to listeners.
         
         .. versionadded:: 0.0.1
         """
         # hacky way
-        from .types import Bot, AutoShardedBot
+        from .types import Bot, AutoShardedBot  # type: ignore
 
         # btw disnake is better
         # importing thins that does not exist on other forks but that exist on disnake 

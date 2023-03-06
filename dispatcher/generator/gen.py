@@ -46,7 +46,7 @@ class Generator:
         template = self.environment.get_template(template_name)
         return template.render(library=self.library_name)
 
-    def _generate_types(self):
+    def _generate_types(self) -> None:
         """This method handles the logic of file types creation."""
         _log.info("generating file types for %s", self.library_name)
         if files := os.scandir(path=TYPES_DIR):
