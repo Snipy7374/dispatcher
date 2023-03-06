@@ -22,7 +22,7 @@ async def on_ready():
 
 @bot.listen("on_UwU")
 async def lmao(x):
-    print("Uwu", x)
+    print("UwU", x)
 ```
 
 ```
