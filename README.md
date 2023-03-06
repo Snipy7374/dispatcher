@@ -1,4 +1,4 @@
-# ext-dispatcher
+# dispatcher
 
 An extension to easily dispatch custom events for discord bots.
 
@@ -11,7 +11,7 @@ import disnake
 from disnake import Intents
 from disnake.ext import commands
 
-from ext_dispatcher import Dispatcher
+from dispatcher import Dispatcher
 
 bot = commands.Bot(intents=Intents.default(), command_prefix=commands.when_mentioned)
 events_dispatcher = Dispatcher(bot, library_name=disnake.__name__) # you can also pass "disnake"
@@ -34,5 +34,5 @@ Out: UwU 10
 - With git
     
     ```
-    git clone -b beta https://github.com/Snipy7374/ext-dispatcher --single-branch
+    git clone -b beta https://github.com/Snipy7374/dispatcher --single-branch
     ```
