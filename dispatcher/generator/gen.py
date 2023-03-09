@@ -29,7 +29,7 @@ import shutil
 from jinja2 import Environment, FileSystemLoader
 
 
-__all__ = ("Generator")
+__all__ = ("Generator",)
 
 _log = logging.getLogger(__name__)
 BASE_DIR = "dispatcher/"

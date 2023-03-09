@@ -42,7 +42,7 @@ if TYPE_CHECKING:
 from .generator import Generator
 
 
-__all__ = ("Dispatcher")
+__all__ = ("Dispatcher",)
 
 _log = logging.getLogger(__name__)
 

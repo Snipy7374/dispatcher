@@ -25,7 +25,7 @@ SOFTWARE.
 from enum import Enum
 
 
-__all__ = ("Event")
+__all__ = ("Event",)
 
 
 class Event(Enum):
