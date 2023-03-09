@@ -25,6 +25,9 @@ SOFTWARE.
 from enum import Enum
 
 
+__all__ = ("Event")
+
+
 class Event(Enum):
     """Represents all the discord events.
     These offer to register listeners/events and to dispatch events in a more pythonic way;
