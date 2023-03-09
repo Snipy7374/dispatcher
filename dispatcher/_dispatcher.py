@@ -75,29 +75,16 @@ class Dispatcher:
     """
     def __init__(self, bot: AnyBot, library_name: str = "disnake") -> None:
         self.bot = bot
-        if library_name not in SUPPORTED_LIBRARIES:
-            raise NotImplemented(f"unsupported library: {library_name!r}")
-        self.library_name = library_name
-        self._generator = Generator(library=library_name)
-        self._generator._generate_types()
-    
+
     @property
     def listeners(self) -> Mapping[str, List[CoroFunc]]:
         """Mapping[:class:`str`, List[Callable]]: A read-only mapping of event name to listeners.
         
         .. versionadded:: 0.0.1
         """
-        # hacky way
-        from .types import Bot, AutoShardedBot  # type: ignore
+        from .types import supported_bots
 
-        # btw disnake is better
-        # importing thins that does not exist on other forks but that exist on disnake 
-        if self.library_name == "disnake":
-            from .types import InteractionBot, AutoShardedInteractionBot  # type: ignore
-            if isinstance(self.bot, (Bot, AutoShardedBot, InteractionBot, AutoShardedInteractionBot)):
-                return types.MappingProxyType(self.bot.extra_events)  # type: ignore
-        
-        if isinstance(self.bot, (Bot, AutoShardedBot)):
+        if isinstance(self.bot, supported_bots):
             return types.MappingProxyType(self.bot.extra_events)  # type: ignore
 
         # self.bot is either Client or AutoSharededClient
