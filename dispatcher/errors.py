@@ -10,4 +10,9 @@ class MultipleCompatibleLibraries(Exception):
 
 
 class NoCompatibleLibraries(Exception):
-    pass
+    def __init__(self, libs, *args, **kwargs):
+        super().__init__(
+            "No compatible libraries found."
+            "The compatible libraries are:"
+            ", ".join(libs), *args, **kwargs,
+        )

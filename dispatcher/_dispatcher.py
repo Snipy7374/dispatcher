@@ -39,8 +39,6 @@ import types
 if TYPE_CHECKING:
     from .types import AnyBot  # type: ignore
 
-from .generator import Generator
-
 _log = logging.getLogger(__name__)
 
 T = TypeVar("T")
@@ -73,13 +71,14 @@ class Dispatcher:
     NotImplemented
         The ``library_name`` is not supported.
     """
+
     def __init__(self, bot: AnyBot, library_name: str = "disnake") -> None:
         self.bot = bot
 
     @property
     def listeners(self) -> Mapping[str, List[CoroFunc]]:
         """Mapping[:class:`str`, List[Callable]]: A read-only mapping of event name to listeners.
-        
+
         .. versionadded:: 0.0.1
         """
         from .types import supported_bots

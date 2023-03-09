@@ -2,8 +2,7 @@
 
 from __future__ import annotations
 
-from os import getenv
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING, Union, List
 
 from pkg_resources import (
     DistributionNotFound,
@@ -16,8 +15,8 @@ __all__ = (
     "supported_bots",
 )
 
-libraries = ("nextcord", "disnake", "py-cord", "discord.py", "discord")
-found: list[str] = []
+libraries = ("disnake", "nextcord", "py-cord", "discord.py", "discord")
+found: List[str] = []
 
 
 for library in libraries:
@@ -30,84 +29,39 @@ for library in libraries:
 
 
 if len(found) == 0:
-    raise NoCompatibleLibraries
+    raise NoCompatibleLibraries(libraries)
 elif len(found) > 1:
     raise MultipleCompatibleLibraries(found)
 
 library = found[0]
 
-
 if library == "nextcord":
-    from nextcord import (
-        Client,
-        Guild,
-        StageChannel,
-        VoiceChannel,
-        VoiceProtocol,
-        version_info,
-    )
-    from nextcord.abc import Connectable, GuildChannel
-    from nextcord.backoff import ExponentialBackoff
-    from nextcord.utils import MISSING
+    from nextcord.ext.commands import Bot, AutoShardedBot
+    supported_bots = (Bot, AutoShardedBot)
 
     if TYPE_CHECKING:
-        from nextcord.types.voice import (
-            GuildVoiceState as GuildVoiceStatePayload,
-            VoiceServerUpdate as VoiceServerUpdatePayload,
-        )
+        AnyBot = Union[*supported_bots]
+
 elif library == "disnake":
-    from disnake import (
-        Client,
-        Guild,
-        StageChannel,
-        VoiceChannel,
-        VoiceProtocol,
-        version_info,
+    from disnake.ext.commands import (
+        Bot,
+        AutoShardedBot,
+        InteractionBot,
+        AutoShardedInteractionBot,
     )
-    from disnake.abc import Connectable, GuildChannel
-    from disnake.backoff import ExponentialBackoff
-    from disnake.utils import MISSING
+    supported_bots = (
+        Bot,
+        AutoShardedBot,
+        InteractionBot,
+        AutoShardedInteractionBot,
+    )
 
     if TYPE_CHECKING:
-        if version_info >= (2, 6):
-            from disnake.types.gateway import (
-                VoiceServerUpdateEvent as VoiceServerUpdatePayload,  # pyright: ignore
-            )
-        else:
-            from disnake.types.voice import (
-                VoiceServerUpdate as VoiceServerUpdatePayload,  # pyright: ignore
-            )
-        from disnake.types.voice import GuildVoiceState as GuildVoiceStatePayload
-else:
-    from discord import (
-        Client,
-        Guild,
-        StageChannel,
-        VoiceChannel,
-        VoiceProtocol,
-        version_info,
-    )
-    from discord.abc import Connectable, GuildChannel
-    from discord.backoff import ExponentialBackoff
-    from discord.utils import MISSING
+        AnyBot = Union[*supported_bots]
+
+elif library in ("discord", "discord.py"):
+    from discord.ext.commands import Bot, AutoShardedBot
+    supported_bots = (Bot, AutoShardedBot)
 
     if TYPE_CHECKING:
-        from discord.types.voice import (
-            GuildVoiceState as GuildVoiceStatePayload,  # noqa: TCH004
-            VoiceServerUpdate as VoiceServerUpdatePayload,  # noqa: TCH004
-        )
-
-
-try:
-    from orjson import dumps as _dumps, loads
-
-    def dumps(obj: Any) -> str:  # noqa: ANN401
-        return _dumps(obj).decode()
-
-except ImportError:
-    from json import dumps, loads
-
-
-if version_info.major != 2:
-    msg = f"Mafic requires version 2 of {library}."
-    raise RuntimeError(msg)
+        AnyBot = Union[*supported_bots]
