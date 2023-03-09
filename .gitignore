@@ -134,3 +134,6 @@ test.py
 
 # IDE config
 .vscode
+
+# PDM
+.pdm.toml
