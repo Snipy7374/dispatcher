@@ -31,8 +31,8 @@ repos:
       - id: black
         name: "run black"
 
-#  - repo: https://github.com/charliermarsh/ruff-pre-commit
-#    rev: v0.0.254
-#    hooks:
-#      - id: ruff
-#        name: "run ruff"
+  - repo: https://github.com/charliermarsh/ruff-pre-commit
+    rev: v0.0.254
+    hooks:
+      - id: ruff
+        name: "run ruff"
