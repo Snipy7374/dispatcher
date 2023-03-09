@@ -139,3 +139,6 @@ test.py
 
 # PDM
 .pdm.toml
+
+# Will eventually be uncommented later
+pdm.lock
