@@ -29,7 +29,7 @@ class Event(Enum):
     """Represents all the discord events.
     These offer to register listeners/events and to dispatch events in a more pythonic way;
     additionally autocompletion and documentation are both supported.
-    
+
     .. versionadded:: 0.0.1
     """
 
@@ -38,8 +38,8 @@ class Event(Enum):
     Represents the :func:`on_connect` event.
     """
     disconnect = "disconnect"
-    """Called when the client has disconnected from Discord, or a connection attempt to Discord has failed.
-    Represents the :func:`on_disconnect` event.
+    """Called when the client has disconnected from Discord, or a connection
+    attempt to Discord has failed. Represents the :func:`on_disconnect` event.
     """
     error = "error"
     """Called when an uncaught exception occurred.
@@ -78,8 +78,9 @@ class Event(Enum):
     Represents the :func:`on_socket_event_type` event.
     """
     socket_raw_receive = "socket_raw_receive"
-    """Called whenever a message is completely received from the WebSocket, before it's processed and parsed.
-    Represents the :func:`on_socket_raw_receive` event.
+    """Called whenever a message is completely received from the WebSocket,
+    before it's processed and parsed. Represents the
+    :func:`on_socket_raw_receive` event.
     """
     socket_raw_send = "socket_raw_send"
     """Called whenever a send operation is done on the WebSocket before the message is sent.
@@ -226,20 +227,24 @@ class Event(Enum):
     Represents the :func:`on_guild_scheduled_event_unsubscribe` event.
     """
     raw_guild_scheduled_event_subscribe = "raw_guild_scheduled_event_subscribe"
-    """Called when a user subscribes from a guild scheduled event regardless of the guild scheduled event cache.
-    Represents the :func:`on_raw_guild_scheduled_event_subscribe` event.
+    """Called when a user subscribes from a guild scheduled event regardless
+    of the guild scheduled event cache. Represents the
+    :func:`on_raw_guild_scheduled_event_subscribe` event.
     """
     raw_guild_scheduled_event_unsubscribe = "raw_guild_scheduled_event_unsubscribe"
-    """Called when a user subscribes to or unsubscribes from a guild scheduled event regardless of the guild scheduled event cache.
-    Represents the :func:`on_raw_guild_scheduled_event_unsubscribe` event.
+    """Called when a user subscribes to or unsubscribes from a guild scheduled
+    event regardless of the guild scheduled event cache. Represents the
+    :func:`on_raw_guild_scheduled_event_unsubscribe` event.
     """
     application_command_permissions_update = "application_command_permissions_update"
-    """Called when the permissions of an application command or the application-wide command permissions are updated.
-    Represents the :func:`on_application_command_permissions_update` event.
+    """Called when the permissions of an application command or the
+    application-wide command permissions are updated. Represents the
+    :func:`on_application_command_permissions_update` event.
     """
     automod_action_execution = "automod_action_execution"
-    """Called when an auto moderation action is executed due to a rule triggering for a particular event.
-    Represents the :func:`on_automod_action_execution` event.
+    """Called when an auto moderation action is executed due to a rule
+    triggering for a particular event. Represents the
+    :func:`on_automod_action_execution` event.
     """
     automod_rule_create = "automod_rule_create"
     """Called when an `AutoModRule` is created.
@@ -366,16 +371,18 @@ class Event(Enum):
     Represents the :func:`on_bulk_message_delete` event.
     """
     raw_message_delete = "raw_message_delete"
-    """Called when a message is deleted regardless of the message being in the internal message cache or not.
-    Represents the :func:`on_raw_message_delete` event.
+    """Called when a message is deleted regardless of the message being in the
+    internal message cache or not. Represents the :func:`on_raw_message_delete`
+    event.
     """
     raw_message_edit = "raw_message_edit"
     """Called when a message is edited regardless of the state of the internal message cache.
     Represents the :func:`on_raw_message_edit` event.
     """
     raw_bulk_message_delete = "raw_bulk_message_delete"
-    """Called when a bulk delete is triggered regardless of the messages being in the internal message cache or not.
-    Represents the :func:`on_raw_bulk_message_delete` event.
+    """Called when a bulk delete is triggered regardless of the messages being
+    in the internal message cache or not. Represents the
+    :func:`on_raw_bulk_message_delete` event.
     """
     reaction_add = "reaction_add"
     """Called when a message has a reaction added to it.
@@ -394,28 +401,33 @@ class Event(Enum):
     Represents the :func:`on_reaction_clear_emoji` event.
     """
     raw_reaction_add = "raw_reaction_add"
-    """Called when a message has a reaction added regardless of the state of the internal message cache.
-    Represents the :func:`on_raw_reaction_add` event.
+    """Called when a message has a reaction added regardless of the state of
+    the internal message cache. Represents the :func:`on_raw_reaction_add`
+    event.
     """
     raw_reaction_remove = "raw_reaction_remove"
-    """Called when a message has a reaction removed regardless of the state of the internal message cache.
-    Represents the :func:`on_raw_reaction_remove` event.
+    """Called when a message has a reaction removed regardless of the state of
+    the internal message cache. Represents the :func:`on_raw_reaction_remove`
+    event.
     """
     raw_reaction_clear = "raw_reaction_clear"
-    """Called when a message has all its reactions removed regardless of the state of the internal message cache.
-    Represents the :func:`on_raw_reaction_clear` event.
+    """Called when a message has all its reactions removed regardless of the
+    state of the internal message cache. Represents the
+    :func:`on_raw_reaction_clear` event.
     """
     raw_reaction_clear_emoji = "raw_reaction_clear_emoji"
-    """Called when a message has a specific reaction removed from it regardless of the state of the internal message cache.
-    Represents the :func:`on_raw_reaction_clear_emoji` event.
+    """Called when a message has a specific reaction removed from it regardless
+    of the state of the internal message cache. Represents the
+    :func:`on_raw_reaction_clear_emoji` event.
     """
     typing = "typing"
     """Called when someone begins typing a message.
     Represents the :func:`on_typing` event.
     """
     raw_typing = "raw_typing"
-    """Called when someone begins typing a message regardless of whether `Intents.members` and `Intents.guilds` are enabled.
-    Represents the :func:`on_raw_typing` event.
+    """Called when someone begins typing a message regardless of whether
+    `Intents.members` and `Intents.guilds` are enabled. Represents the
+    :func:`on_raw_typing` event.
     """
     # ext.commands events
     command = "command"
@@ -427,8 +439,9 @@ class Event(Enum):
     Represents the :func:`.on_command_completion` event.
     """
     command_error = "command_error"
-    """Called when an error is raised inside a command either through user input error, check failure, or an error in your own code.
-    Represents the :func:`.on_command_error` event.
+    """Called when an error is raised inside a command either through user
+    input error, check failure, or an error in your own code. Represents the
+    :func:`.on_command_error` event.
     """
     slash_command = "slash_command"
     """Called when a slash command is found and is about to be invoked.
@@ -439,8 +452,9 @@ class Event(Enum):
     Represents the :func:`.on_slash_command_completion` event.
     """
     slash_command_error = "slash_command_error"
-    """Called when an error is raised inside a slash command either through user input error, check failure, or an error in your own code.
-    Represents the :func:`.on_slash_command_error` event.
+    """Called when an error is raised inside a slash command either through
+    user input error, check failure, or an error in your own code. Represents
+    the :func:`.on_slash_command_error` event.
     """
     user_command = "user_command"
     """Called when a user command is found and is about to be invoked.
@@ -451,8 +465,9 @@ class Event(Enum):
     Represents the :func:`.on_user_command_completion` event.
     """
     user_command_error = "user_command_error"
-    """Called when an error is raised inside a user command either through check failure, or an error in your own code.
-    Represents the :func:`.on_user_command_error` event.
+    """Called when an error is raised inside a user command either through
+    check failure, or an error in your own code. Represents the
+    :func:`.on_user_command_error` event.
     """
     message_command = "message_command"
     """Called when a message command is found and is about to be invoked.
@@ -463,6 +478,7 @@ class Event(Enum):
     Represents the :func:`.on_message_command_completion` event.
     """
     message_command_error = "message_command_error"
-    """Called when an error is raised inside a message command either through check failure, or an error in your own code.
-    Represents the :func:`.on_message_command_error` event.
+    """Called when an error is raised inside a message command either through
+    check failure, or an error in your own code. Represents the
+    :func:`.on_message_command_error` event.
     """

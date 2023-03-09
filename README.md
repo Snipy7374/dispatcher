@@ -38,7 +38,7 @@ Out: UwU 10
     ```
 
 - With git
-    
+
     ```
     git clone -b beta https://github.com/Snipy7374/dispatcher --single-branch
     ```
