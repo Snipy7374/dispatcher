@@ -39,6 +39,9 @@ import types
 if TYPE_CHECKING:
     from .types import AnyBot
 
+
+__all__ = ("Dispatcher",)
+
 _log = logging.getLogger(__name__)
 
 T = TypeVar("T")
