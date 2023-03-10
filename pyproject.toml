@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 [project]
 name = "dispatcher"
 description = "An extension to easily dispatch custom events for discord bots."

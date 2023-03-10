@@ -1,5 +1,7 @@
+# SPDX-License-Identifier: MIT
+
 """Dispatcher for discord.py and forks
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 A basic event dispatcher for the discord.py wrapper
 and forks.
