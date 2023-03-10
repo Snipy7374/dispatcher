@@ -22,8 +22,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 
-import os
 import logging
+import os
 import shutil
 
 from jinja2 import Environment, FileSystemLoader
@@ -35,6 +35,7 @@ _log = logging.getLogger(__name__)
 BASE_DIR = "dispatcher/"
 TYPES_DIR = BASE_DIR + "types/"
 
+
 class Generator:
     def __init__(self, library: str) -> None:
         self.environment = Environment(
@@ -43,7 +44,7 @@ class Generator:
             trim_blocks=True,
         )
         self.library_name = library
-    
+
     def _render_template(self, template_name: str) -> str:
         """An internal method used to generate templates."""
         template = self.environment.get_template(template_name)
@@ -61,12 +62,15 @@ class Generator:
                         os.remove(TYPES_DIR + file.name)
                     else:
                         shutil.rmtree(TYPES_DIR + file.name)
-                
+
                 # if file types for the user provided library already exists skip this process
                 if file.name.startswith(self.library_name):
-                    _log.info("%s types already exists, skipping this process", self.library_name)
+                    _log.info(
+                        "%s types already exists, skipping this process",
+                        self.library_name,
+                    )
                     return
- 
+
         content = self._render_template("types.py.jinja")
         with open(f"{TYPES_DIR}{self.library_name}_types.py", "w") as file:
             file.write(content)
