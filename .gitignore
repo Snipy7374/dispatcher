@@ -134,3 +134,9 @@ test.py
 
 # IDE config
 .vscode
+
+# PDM
+.pdm.toml
+
+# Will eventually be uncommented later
+pdm.lock
