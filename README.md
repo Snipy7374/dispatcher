@@ -1,3 +1,5 @@
+<!-- SPDX-License-Identifier: MIT -->
+
 # dispatcher
 
 An extension to easily dispatch custom events for discord bots.
