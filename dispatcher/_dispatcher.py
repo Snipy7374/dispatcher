@@ -37,20 +37,13 @@ import logging
 import types
 
 if TYPE_CHECKING:
-    from .types import AnyBot  # type: ignore
+    from .types import AnyBot
 
 _log = logging.getLogger(__name__)
 
 T = TypeVar("T")
 Coro = Coroutine[Any, Any, T]
 CoroFunc = Callable[..., Coro[Any]]
-
-SUPPORTED_LIBRARIES = (
-    "disnake",
-    "nextcord",
-    "pycord",
-    "discord",
-)
 
 
 class Dispatcher:

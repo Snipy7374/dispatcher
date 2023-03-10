@@ -3,11 +3,14 @@
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Union, List
+import typing
 
-from pkg_resources import (
+from pkg_resources import (  # type: ignore
     DistributionNotFound,
     get_distribution,
 )
+
+from sys import version_info as py_ver
 
 from .errors import MultipleCompatibleLibraries, NoCompatibleLibraries
 
@@ -40,7 +43,10 @@ if library == "nextcord":
     supported_bots = (Bot, AutoShardedBot)
 
     if TYPE_CHECKING:
-        AnyBot = Union[*supported_bots]
+        # Duplication is required here because unpack OP in indexes is Python 3.11+ feature.
+        # And even with Python 3.11 you'd not be able to dynamically generate Union due to
+        # type checkers' static nature. Same applies to other cases as well.
+        AnyBot = Union[Bot, AutoShardedBot]
 
 elif library == "disnake":
     from disnake.ext.commands import (
@@ -57,11 +63,16 @@ elif library == "disnake":
     )
 
     if TYPE_CHECKING:
-        AnyBot = Union[*supported_bots]
+        AnyBot = Union[
+            Bot,
+            AutoShardedBot,
+            InteractionBot,
+            AutoShardedInteractionBot,
+        ]
 
-elif library in ("discord", "discord.py"):
+else:
     from discord.ext.commands import Bot, AutoShardedBot
     supported_bots = (Bot, AutoShardedBot)
 
     if TYPE_CHECKING:
-        AnyBot = Union[*supported_bots]
+        AnyBot = Union[Bot, AutoShardedBot]
