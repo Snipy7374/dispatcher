@@ -13,6 +13,13 @@ readme = "README.md"
 license = { text = "MIT" }
 dynamic = ["version"]
 
+[project.optional-dependencies]
+lint = [
+    "disnake>=2.8.1",
+    "nextcord>=2.4.0",
+    "py-cord>=2.4.0",
+]
+
 [tool.pdm.version]
 source = "file"
 path = "dispatcher/__init__.py"
@@ -30,3 +37,7 @@ reportUnknownArgumentType = false
 reportUnknownMemberType = false
 reportMissingParameterType = false
 reportUnnecessaryIsInstance = false
+reportMissingTypeStubs = false
+
+# Unfortunately it's not even theoretically possible to fix typing in examples.
+ignore = ["examples/**"]

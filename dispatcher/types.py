@@ -2,15 +2,13 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Union, List
-import typing
+from typing import TYPE_CHECKING, Any, Union, List
 
 from pkg_resources import (  # type: ignore
     DistributionNotFound,
     get_distribution,
 )
 
-from sys import version_info as py_ver
 
 from .errors import MultipleCompatibleLibraries, NoCompatibleLibraries
 
@@ -20,7 +18,7 @@ __all__ = (
 
 libraries = ("disnake", "nextcord", "py-cord", "discord.py", "discord")
 found: List[str] = []
-
+AnyBot = Any
 
 for library in libraries:
     try:
@@ -30,7 +28,6 @@ for library in libraries:
     else:
         found.append(library)
 
-
 if len(found) == 0:
     raise NoCompatibleLibraries(libraries)
 elif len(found) > 1:
@@ -38,17 +35,7 @@ elif len(found) > 1:
 
 library = found[0]
 
-if library == "nextcord":
-    from nextcord.ext.commands import Bot, AutoShardedBot
-    supported_bots = (Bot, AutoShardedBot)
-
-    if TYPE_CHECKING:
-        # Duplication is required here because unpack OP in indexes is Python 3.11+ feature.
-        # And even with Python 3.11 you'd not be able to dynamically generate Union due to
-        # type checkers' static nature. Same applies to other cases as well.
-        AnyBot = Union[Bot, AutoShardedBot]
-
-elif library == "disnake":
+if library == "disnake":
     from disnake.ext.commands import (
         Bot,
         AutoShardedBot,
@@ -63,12 +50,22 @@ elif library == "disnake":
     )
 
     if TYPE_CHECKING:
+        # Duplication is required here because unpack OP in indexes is Python 3.11+ feature.
+        # And even with Python 3.11 you'd not be able to dynamically generate Union due to
+        # type checkers' static nature. Same applies to other cases as well.
         AnyBot = Union[
             Bot,
             AutoShardedBot,
             InteractionBot,
             AutoShardedInteractionBot,
         ]
+
+elif library == "nextcord":
+    from nextcord.ext.commands import Bot, AutoShardedBot
+    supported_bots = (Bot, AutoShardedBot)
+
+    if TYPE_CHECKING:
+        AnyBot = Union[Bot, AutoShardedBot]
 
 else:
     from discord.ext.commands import Bot, AutoShardedBot

@@ -5,7 +5,7 @@ from disnake.ext import commands
 from dispatcher import Dispatcher
 
 bot = commands.Bot(command_prefix=commands.when_mentioned, intents=None)
-bot.dispatcher = Dispatcher(bot, library_name=disnake.__name__)
+bot.dispatcher = Dispatcher(bot)
 
 @bot.event
 async def on_ready():

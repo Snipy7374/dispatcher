@@ -37,7 +37,8 @@ import logging
 import types
 
 if TYPE_CHECKING:
-    from .types import AnyBot
+    from . import types as types_
+    AnyBot = types_.AnyBot
 
 
 __all__ = ("Dispatcher",)
@@ -58,17 +59,10 @@ class Dispatcher:
     Parameters
     ----------
     bot: AnyBot
-    library_name: :class:`str`
-        The name of the library that you're using. The ``library_name`` must be one of the
-        supported library.
-    
-    Raises
-    ------
-    NotImplemented
-        The ``library_name`` is not supported.
+        The bot instance to work with.
     """
 
-    def __init__(self, bot: AnyBot, library_name: str = "disnake") -> None:
+    def __init__(self, bot: AnyBot) -> None:
         self.bot = bot
 
     @property
@@ -80,9 +74,9 @@ class Dispatcher:
         from .types import supported_bots
 
         if isinstance(self.bot, supported_bots):
-            return types.MappingProxyType(self.bot.extra_events)  # type: ignore
+            return types.MappingProxyType(self.bot.extra_events)
 
-        # self.bot is either Client or AutoSharededClient
+        # self.bot is either Client or AutoShardedClient
         # these can't have listeners
         return {}
 
