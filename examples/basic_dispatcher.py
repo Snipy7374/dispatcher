@@ -1,26 +1,33 @@
 # This example uses disnake
 
-import disnake
 from disnake.ext import commands
 from dispatcher import Dispatcher
 
-bot = commands.Bot(command_prefix=commands.when_mentioned, intents=None)
-bot.dispatcher = Dispatcher(bot)
+class MyBot(commands.Bot):
+    dispatcher: Dispatcher["MyBot"]
 
-@bot.event
-async def on_ready():
-    print(bot.user)
-    bot.dispatcher.dispatch("my_event")
+    def __init__(self) -> None:
+        super().__init__(
+            command_prefix=commands.when_mentioned,
+            intents=None,
+        )
+        self.dispatcher = Dispatcher(self)
 
-    # passing args and kwargs
-    bot.dispatcher.dispatch("my_second_event", 10, name="Snipy")
+    async def on_ready(self):
+        print(self.user)
+        self.dispatcher.dispatch("my_event")
+
+        # passing args and kwargs
+        self.dispatcher.dispatch("my_second_event", 10, name="Snipy")
+
+bot = MyBot()
 
 @bot.listen("on_my_event")
 async def foo():
     print("on_my_event was called")
 
 @bot.listen("on_my_second_event")
-async def bar(n, *, name):
-    print("on_my_second_event was called", n, name)
+async def bar(num: int, *, name: str):
+    print("on_my_second_event was called", num, name)
 
 bot.run("TOKEN")

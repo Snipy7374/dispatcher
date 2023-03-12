@@ -24,5 +24,4 @@ __license__ = "MIT"
 __version__ = "0.0.1"
 
 
-from ._dispatcher import *
-from .enums import *
+from .dispatcher import *

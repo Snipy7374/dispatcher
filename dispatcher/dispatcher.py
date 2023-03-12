@@ -24,33 +24,24 @@ SOFTWARE.
 
 from __future__ import annotations
 from typing import (
-    List,
-    Callable,
-    TypeVar,
     Any,
-    Coroutine,
+    Generic,
+    List,
     Mapping,
-    TYPE_CHECKING
+    TYPE_CHECKING,
 )
 
 import logging
 import types
 
 if TYPE_CHECKING:
-    from . import types as types_
-    AnyBot = types_.AnyBot
-
+    from .types import CoroFunc, BotT
 
 __all__ = ("Dispatcher",)
 
 _log = logging.getLogger(__name__)
 
-T = TypeVar("T")
-Coro = Coroutine[Any, Any, T]
-CoroFunc = Callable[..., Coro[Any]]
-
-
-class Dispatcher:
+class Dispatcher(Generic[BotT]):
     """
     A class to handles custom event dispatching.
 
@@ -58,11 +49,11 @@ class Dispatcher:
 
     Parameters
     ----------
-    bot: AnyBot
+    bot: BotT
         The bot instance to work with.
     """
 
-    def __init__(self, bot: AnyBot) -> None:
+    def __init__(self, bot: BotT) -> None:
         self.bot = bot
 
     @property
@@ -71,16 +62,14 @@ class Dispatcher:
 
         .. versionadded:: 0.0.1
         """
-        from .types import supported_bots
-
-        if isinstance(self.bot, supported_bots):
+        if hasattr(self.bot, "extra_events"):
             return types.MappingProxyType(self.bot.extra_events)
 
         # self.bot is either Client or AutoShardedClient
         # these can't have listeners
         return {}
 
-    def dispatch(self, event: str, *args, **kwargs) -> None:
+    def dispatch(self, event: str, *args: Any, **kwargs: Any) -> None:
         """A function to dispatch custom events.
 
         .. versionadded:: 0.0.1
@@ -95,14 +84,6 @@ class Dispatcher:
         **kwargs
             Keyword arguments that a callback listening for this ``event``
             must take.
-
-        Raises
-        ------
-        ValueError
-            ``event`` is not of :class:`str` type.
         """
-        if not isinstance(event, str):
-            raise ValueError(f"event must be of str type, not {event.__class__!r}")
-
         self.bot.dispatch(event, *args, **kwargs)
         _log.info("%s event was dispatched", event)

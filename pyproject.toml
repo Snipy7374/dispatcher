@@ -31,13 +31,6 @@ build-backend = "pdm.backend"
 [tool.pyright]
 typeCheckingMode = "strict"
 reportInvalidStringEscapeSequence = false
-reportUnusedImport = false
-reportUnknownParameterType = false
-reportUnknownArgumentType = false
-reportUnknownMemberType = false
-reportMissingParameterType = false
-reportUnnecessaryIsInstance = false
-reportMissingTypeStubs = false
-
-# Unfortunately it's not even theoretically possible to fix typing in examples.
-ignore = ["examples/**"]
+reportUnusedImport = true
+reportUnknownParameterType = true
+reportUnknownArgumentType = true
