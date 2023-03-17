@@ -10,7 +10,7 @@ derived libraries, such as disnake, nextcord and pycord.
 :license: MIT, see LICENSE for more details.
 """
 
-__name__ = "disnake-ext-dispatcher"
+__name__ = "dispatcher"
 __author__ = "Snipy7374"
 __copyright__ = "Copyright 2023-present Snipy7374"
 __license__ = "MIT"
