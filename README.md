@@ -1,3 +1,5 @@
+<!-- SPDX-License-Identifier: MIT -->
+
 # dispatcher
 
 An extension to easily dispatch custom events for discord bots.
@@ -34,14 +36,39 @@ UwU 10
 
 ## Installation
 
-- With pip + git
+- With pip + Git
 
-    ```
+    ```sh
     python3 -m pip install -U git+https://github.com/Snipy7374/dispatcher
     ```
 
-- With git
-    
-    ```
+- With Git
+
+    ```sh
     git clone -b beta https://github.com/Snipy7374/dispatcher --single-branch
     ```
+
+## Development
+
+To contribute, you will need [Git](https://git-scm.com)
+and [PDM](https://pdm.fming.dev/). [GitHub CLI](https://cli.github.com/)
+will also likely improve your experience.
+
+After installing these, fork this repo and run the
+following to setup your development environment:
+
+```sh
+git clone https://github.com/YOUR_GITHUB_USERNAME/YOUR_FORK_NAME.git
+cd dispatcher
+pdm install
+pdm run setup_env
+```
+
+This will clone the repo, install required dependencies and
+setup git hooks ([pre-commit](https://pre-commit.com/), specifically).
+
+After that, the process is common: make changes, commit, push, submit PR.
+
+For big changes it is better to open an issue and discuss your
+proposed changes first, to not waste your time in case the change
+is undesired.

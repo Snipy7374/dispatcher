@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 [project]
 name = "dispatcher"
 description = "An extension to easily dispatch custom events for discord bots."
@@ -28,7 +30,32 @@ build-backend = "pdm.backend"
 
 [tool.pyright]
 typeCheckingMode = "strict"
+
 reportInvalidStringEscapeSequence = true
 reportUnusedImport = true
 reportUnknownParameterType = true
-reportUnknownArgumentType = false # For some reason this breaks type hinting. Not sure why
+reportUnknownArgumentType = false
+
+[tool.black]
+line-length = 100
+target-version = ["py38", "py39", "py310", "py311"]
+
+[tool.isort]
+profile = "black"
+py_version = 38
+line_length = 100
+
+[tool.ruff]
+line-length = 100
+target-version = "py38"
+ignore = [
+    "F403", # Star imports
+]
+
+[tool.pdm.dev-dependencies]
+dev = [
+    "pre-commit>=3.1.1",
+]
+
+[tool.pdm.scripts]
+setup_env = "pre-commit install"

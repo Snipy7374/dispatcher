@@ -1,6 +1,9 @@
+# SPDX-License-Identifier: MIT
+
 # Basic functionality example using disnake.
 
 from disnake.ext import commands
+
 from dispatcher import Dispatcher
 
 class MyBot(commands.InteractionBot):
@@ -20,12 +23,15 @@ class MyBot(commands.InteractionBot):
 
 bot = MyBot()
 
+
 @bot.listen("on_my_event")
 async def foo():
     print("on_my_event was called")
 
+
 @bot.listen("on_my_second_event")
 async def bar(num: int, *, name: str):
     print("on_my_second_event was called", num, name)
+
 
 bot.run("TOKEN")

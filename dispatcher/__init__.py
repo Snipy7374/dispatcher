@@ -1,17 +1,10 @@
+# SPDX-License-Identifier: MIT
+
 """Dispatcher for discord.py and forks
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-A basic event dispatcher for the discord.py wrapper
-and forks.
-
-The supported libraries are:
-    - discord.py
-    - disnake
-    - nextcord
-    - pycord
-
-This library could work for other discord.py forks but the type
-annotation won't work.
+A basic event dispatcher for the discord.py itself and
+derived libraries such as disnake, nextcord and pycord.
 
 :copyright: (c) 2023-present Snipy7374
 :license: MIT, see LICENSE for more details.
