@@ -1,13 +1,10 @@
 # SPDX-License-Identifier: MIT
 
 [project]
-name = "dispatcher"
+name = "disnake-ext-dispatcher"
 description = "An extension to easily dispatch custom events for discord bots."
 authors = [
     { name = "Snipy7374", email = "snipy7374@gmail.com" },
-]
-dependencies = [
-    "Jinja2>=3.1.2",
 ]
 requires-python = ">=3.8"
 keywords = ["discord", "discord API", "discord.py"]
@@ -17,12 +14,12 @@ dynamic = ["version"]
 
 [project.optional-dependencies]
 lint = [
-    "disnake>=2.8.1",
+    "disnake>=2.8.1", # Required for linting examples
 ]
 
 [tool.pdm.version]
 source = "file"
-path = "dispatcher/__init__.py"
+path = "disnake/ext/dispatcher/__init__.py"
 
 [build-system]
 requires = ["pdm-backend"]

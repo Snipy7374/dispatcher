@@ -140,5 +140,8 @@ test.py
 # PDM
 .pdm.toml
 
-# Will eventually be uncommented later
+# Will eventually be enabled later
 pdm.lock
+
+# Ruff
+.ruff_cache

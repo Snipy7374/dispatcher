@@ -2,36 +2,58 @@
 
 # Basic functionality example using disnake.
 
+import os
+
+import disnake
 from disnake.ext import commands
+from disnake.ext.dispatcher import Dispatcher
 
-from dispatcher import Dispatcher
 
+# We don't need prefix commands, so we are using InteractionBot here.
 class MyBot(commands.InteractionBot):
-    dispatcher: Dispatcher["MyBot"] # Dispatcher uses generics so that you can use any bot
-                                    # class from any library: you just need to type-hint it.
+    # Dispatcher uses generics so that you can use any bot
+    # class from any library: you just need to type-hint it.
+    dispatcher: Dispatcher["MyBot"]
 
     def __init__(self) -> None:
-        super().__init__(intents=None)
+        super().__init__(intents=disnake.Intents.default())
+        # One would usually assign dispatcher to the bot directly.
         self.dispatcher = Dispatcher(self)
 
-    async def on_ready(self):
+    async def on_ready(self) -> None:
         print(f"Ready! Logged in as {self.user}")
-        self.dispatcher.dispatch("my_event")
 
-        # passing args and kwargs
-        self.dispatcher.dispatch("my_second_event", 10, name="Snipy")
+        # Send message to any available channel.
+        for guild in self.guilds:
+            for channel in guild.text_channels:
+                await channel.send("Hello!")
+                break
+            break
+
+    async def on_message(self, message: disnake.Message) -> None:
+        # The message is sent by us.
+        if message.author.id == self.user.id:
+            # Dispatch the 'on_self_message' event.
+            self.dispatcher.dispatch("on_self_message", message)
+
+    # Event listeners can be defined on bot class itself..
+    async def on_self_message(self, message: disnake.Message):
+        print(f"Self-sent message at {message.created_at}")
+
 
 bot = MyBot()
 
 
-@bot.listen("on_my_event")
-async def foo():
-    print("on_my_event was called")
+# ..or be registered as a listener, either via @commands.Bot.listen or
+# @commands.Cog.listener() decorators..
+@bot.listen("on_self_message")
+async def log_content(message: disnake.Message) -> None:
+    print(f"Self-sent message with content '{message.content}'")
 
 
-@bot.listen("on_my_second_event")
-async def bar(num: int, *, name: str):
-    print("on_my_second_event was called", num, name)
-
-
-bot.run("TOKEN")
+# ..just like the regular events.
+try:
+    bot.run(os.environ["BOT_TOKEN"])
+except KeyError:
+    print("Unable to find bot token. Have you set the 'BOT_TOKEN' environment variable?")
+    exit(1)

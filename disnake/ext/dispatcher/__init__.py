@@ -4,13 +4,13 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 A basic event dispatcher for the discord.py itself and
-derived libraries such as disnake, nextcord and pycord.
+derived libraries, such as disnake, nextcord and pycord.
 
 :copyright: (c) 2023-present Snipy7374
 :license: MIT, see LICENSE for more details.
 """
 
-__name__ = "dispatcher"
+__name__ = "disnake-ext-dispatcher"
 __author__ = "Snipy7374"
 __copyright__ = "Copyright 2023-present Snipy7374"
 __license__ = "MIT"

@@ -1,24 +1,18 @@
 # SPDX-License-Identifier: MIT
 
 from __future__ import annotations
-from typing import (
-    Any,
-    Generic,
-    List,
-    Mapping,
-    TYPE_CHECKING,
-)
 
 import logging
 import types
-from typing import TYPE_CHECKING, Any, List, Mapping
+from typing import TYPE_CHECKING, Any, Generic, List, Mapping
 
 if TYPE_CHECKING:
-    from .types import CoroFunc, BotT
+    from .types import BotT, CoroFunc
 
 __all__ = ("Dispatcher",)
 
 _log = logging.getLogger(__name__)
+
 
 class Dispatcher(Generic[BotT]):
     """
@@ -31,6 +25,8 @@ class Dispatcher(Generic[BotT]):
     bot: BotT
         The bot instance to work with.
     """
+
+    bot: BotT
 
     def __init__(self, bot: BotT) -> None:
         self.bot = bot
