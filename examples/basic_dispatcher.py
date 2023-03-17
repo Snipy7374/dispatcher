@@ -39,7 +39,7 @@ class MyBot(commands.InteractionBot):
 
     # Event listeners can be defined on bot class itself..
     async def on_self_message(self, message: disnake.Message):
-        print(f"Self-sent message at {message.created_at}")
+        print(f"We sent a message at {message.created_at}")
 
 
 bot = MyBot()
@@ -49,7 +49,7 @@ bot = MyBot()
 # @commands.Cog.listener() decorators..
 @bot.listen("on_self_message")
 async def log_content(message: disnake.Message) -> None:
-    print(f"Self-sent message with content '{message.content}'")
+    print(f"We sent a message with content '{message.content}'")
 
 
 # ..just like the regular events.
