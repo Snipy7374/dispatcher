@@ -1,20 +1,18 @@
-# This example uses disnake
+# Basic functionality example using disnake.
 
 from disnake.ext import commands
 from dispatcher import Dispatcher
 
-class MyBot(commands.Bot):
-    dispatcher: Dispatcher["MyBot"]
+class MyBot(commands.InteractionBot):
+    dispatcher: Dispatcher["MyBot"] # Dispatcher uses generics so that you can use any bot
+                                    # class from any library: you just need to type-hint it.
 
     def __init__(self) -> None:
-        super().__init__(
-            command_prefix=commands.when_mentioned,
-            intents=None,
-        )
+        super().__init__(intents=None)
         self.dispatcher = Dispatcher(self)
 
     async def on_ready(self):
-        print(self.user)
+        print(f"Ready! Logged in as {self.user}")
         self.dispatcher.dispatch("my_event")
 
         # passing args and kwargs

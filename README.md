@@ -2,9 +2,10 @@
 
 An extension to easily dispatch custom events for discord bots.
 
-This extension can ideally work with any discord.py fork (disnake, nextcord, pycord) and it comes with typing support for every of these forks.
+This extension can ideally work with any discord.py-derived library (e.g., disnake, nextcord, pycord) and
+comes with full typing support for every of them.
 
-# Example
+## Example
 
 ```py
 import disnake
@@ -25,11 +26,13 @@ async def lmao(x):
     print("UwU", x)
 ```
 
-```
-Out: UwU 10
+Out:
+
+```sh
+UwU 10
 ```
 
-# Installation
+## Installation
 
 - With pip + git
 

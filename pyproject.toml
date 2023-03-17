@@ -16,8 +16,6 @@ dynamic = ["version"]
 [project.optional-dependencies]
 lint = [
     "disnake>=2.8.1",
-    "nextcord>=2.4.0",
-    "py-cord>=2.4.0",
 ]
 
 [tool.pdm.version]
@@ -30,7 +28,7 @@ build-backend = "pdm.backend"
 
 [tool.pyright]
 typeCheckingMode = "strict"
-reportInvalidStringEscapeSequence = false
+reportInvalidStringEscapeSequence = true
 reportUnusedImport = true
 reportUnknownParameterType = true
-reportUnknownArgumentType = true
+reportUnknownArgumentType = false # For some reason this breaks type hinting. Not sure why
