@@ -6,7 +6,8 @@ import os
 
 import disnake
 from disnake.ext import commands
-from disnake.ext.dispatcher import Dispatcher
+
+from dispatcher import Dispatcher
 
 
 # We don't need prefix commands, so we are using InteractionBot here.

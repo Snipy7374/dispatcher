@@ -1,6 +1,6 @@
 <!-- SPDX-License-Identifier: MIT -->
 
-# disnake-ext-dispatcher
+# dispatcher
 
 An extension to easily dispatch custom events for discord bots.
 
