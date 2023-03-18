@@ -41,7 +41,7 @@ bot = MyBot()
 # ..or be registered as a listener, either via @commands.Bot.listen or
 # @commands.Cog.listener() decorators, just like the regular events.
 @bot.listen("on_self_mention")
-async def log_content(message: disnake.Message) -> None:
+async def log_author(message: disnake.Message) -> None:
     print(f"We were mentioned in message sent by '{message.author}'")
 
 
