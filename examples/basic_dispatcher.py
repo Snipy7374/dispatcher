@@ -24,21 +24,14 @@ class MyBot(commands.InteractionBot):
     async def on_ready(self) -> None:
         print(f"Ready! Logged in as {self.user}")
 
-        # Send message to any available channel.
-        for guild in self.guilds:
-            for channel in guild.text_channels:
-                await channel.send("Hello!")
-                break
-            break
-
     async def on_message(self, message: disnake.Message) -> None:
-        # The message is sent by us.
-        if message.author.id == self.user.id:
+        # We're mentioned in the message.
+        if self.user.id in [user.id for user in message.mentions]:
             # Dispatch the 'on_self_message' event.
-            self.dispatcher.dispatch("on_self_message", message)
+            self.dispatcher.dispatch("on_self_mention", message)
 
     # Event listeners can be defined on bot class itself..
-    async def on_self_message(self, message: disnake.Message):
+    async def on_self_mention(self, message: disnake.Message):
         print(f"Self-sent message at {message.created_at}")
 
 
