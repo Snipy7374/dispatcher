@@ -32,20 +32,19 @@ class MyBot(commands.InteractionBot):
 
     # Event listeners can be defined on bot class itself..
     async def on_self_mention(self, message: disnake.Message):
-        print(f"Self-sent message at {message.created_at}")
+        print(f"We were mentioned at {message.created_at}")
 
 
 bot = MyBot()
 
 
 # ..or be registered as a listener, either via @commands.Bot.listen or
-# @commands.Cog.listener() decorators..
-@bot.listen("on_self_message")
+# @commands.Cog.listener() decorators, just like the regular events.
+@bot.listen("on_self_mention")
 async def log_content(message: disnake.Message) -> None:
-    print(f"Self-sent message with content '{message.content}'")
+    print(f"We were mentioned in message sent by '{message.author}'")
 
 
-# ..just like the regular events.
 try:
     bot.run(os.environ["BOT_TOKEN"])
 except KeyError:

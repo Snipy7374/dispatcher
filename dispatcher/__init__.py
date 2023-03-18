@@ -3,7 +3,7 @@
 """Dispatcher for discord.py and forks
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-A basic event dispatcher for the discord.py itself and
+A basic event dispatcher for discord.py itself and
 derived libraries, such as disnake, nextcord and pycord.
 
 :copyright: (c) 2023-present Snipy7374
