@@ -7,7 +7,7 @@ import types
 from typing import TYPE_CHECKING, Any, Generic, List, Mapping
 
 if TYPE_CHECKING:
-    from .types import BotT, CoroFunc
+    from ._types import BotT, CoroFunc
 
 __all__ = ("Dispatcher",)
 

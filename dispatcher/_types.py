@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Callable, Coroutine, Dict, List, Protocol, Tuple, TypeVar
+from typing import TYPE_CHECKING, Any, Callable, Coroutine, Dict, List, Protocol, TypeVar
 
 if TYPE_CHECKING:
     T = TypeVar("T")
@@ -13,4 +13,6 @@ if TYPE_CHECKING:
 
     class SupportsListeners(Protocol):
         extra_events: Dict[str, List[CoroFunc]]
-        dispatch: Callable[[Any, str, Tuple[Any], Dict[str, Any]], None]
+
+        def dispatch(self: Any, event_name: str, *args: Any, **kwargs: Any) -> None:
+            ...
