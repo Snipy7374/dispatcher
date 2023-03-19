@@ -6,13 +6,16 @@ description = "An extension to easily dispatch custom events for discord bots."
 authors = [
     { name = "Snipy7374", email = "snipy7374@gmail.com" },
 ]
-dependencies = [
-    "Jinja2>=3.1.2",
-]
 requires-python = ">=3.8"
+keywords = ["discord", "discord API", "discord.py"]
 readme = "README.md"
 license = { text = "MIT" }
 dynamic = ["version"]
+
+[project.optional-dependencies]
+lint = [
+    "disnake>=2.8.1", # Required for linting examples
+]
 
 [tool.pdm.version]
 source = "file"
@@ -24,13 +27,11 @@ build-backend = "pdm.backend"
 
 [tool.pyright]
 typeCheckingMode = "strict"
-reportInvalidStringEscapeSequence = false
-reportUnusedImport = false
-reportUnknownParameterType = false
+
+reportInvalidStringEscapeSequence = true
+reportUnusedImport = true
+reportUnknownParameterType = true
 reportUnknownArgumentType = false
-reportUnknownMemberType = false
-reportMissingParameterType = false
-reportUnnecessaryIsInstance = false
 
 [tool.black]
 line-length = 100

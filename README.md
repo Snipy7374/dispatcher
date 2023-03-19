@@ -4,48 +4,22 @@
 
 An extension to easily dispatch custom events for discord bots.
 
-This extension can ideally work with any discord.py fork (disnake, nextcord, pycord) and it comes with typing support for every of these forks.
+This extension can ideally work with any discord.py-derived library (e.g., disnake, nextcord, pycord) and
+comes with full typing support for every of them.
 
-# Example
+## Installation
 
-```py
-import disnake
-from disnake import Intents
-from disnake.ext import commands
+Currently there isn't package available on PyPI, so you'll have to install this with Git:
 
-from dispatcher import Dispatcher
-
-bot = commands.Bot(intents=Intents.default(), command_prefix=commands.when_mentioned)
-events_dispatcher = Dispatcher(bot, library_name=disnake.__name__) # you can also pass "disnake"
-
-@bot.event
-async def on_ready():
-    events_dispatcher.dispatch("UwU", 10)
-
-@bot.listen("on_UwU")
-async def lmao(x):
-    print("UwU", x)
+```sh
+python3 -m pip install -U git+https://github.com/Snipy7374/dispatcher
 ```
 
-```
-Out: UwU 10
-```
+## Examples
 
-# Installation
+See the [examples](/examples) folder.
 
-- With pip + Git
-
-    ```
-    python3 -m pip install -U git+https://github.com/Snipy7374/dispatcher
-    ```
-
-- With Git
-
-    ```
-    git clone -b beta https://github.com/Snipy7374/dispatcher --single-branch
-    ```
-
-# Development
+## Development
 
 To contribute, you will need [Git](https://git-scm.com)
 and [PDM](https://pdm.fming.dev/). [GitHub CLI](https://cli.github.com/)
@@ -53,10 +27,11 @@ will also likely improve your experience.
 
 After installing these, fork this repo and run the
 following to setup your development environment:
+
 ```sh
 git clone https://github.com/YOUR_GITHUB_USERNAME/YOUR_FORK_NAME.git
 cd dispatcher
-pdm install
+pdm install -d -G lint
 pdm run setup_env
 ```
 
